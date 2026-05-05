@@ -1,0 +1,5 @@
+/* Reset default Vite styles that conflict with our custom App.css */
+body {
+  margin: 0;
+  padding: 0;
+}
