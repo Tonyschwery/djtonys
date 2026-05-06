@@ -279,8 +279,8 @@ a {
   color: var(--text-secondary);
 }
 
-/* Spotify Section */
-.spotify-section {
+/* Upcoming & Spotify Sections */
+.spotify-section, .upcoming-section {
   padding: 4rem 0;
 }
 
@@ -289,6 +289,11 @@ a {
   margin: 0 auto;
   padding: 3rem;
   text-align: center;
+}
+
+.upcoming-card {
+  border: 1px solid rgba(255, 242, 0, 0.2) !important;
+  box-shadow: 0 0 30px rgba(255, 242, 0, 0.1);
 }
 
 /* Contact Section */
@@ -409,7 +414,7 @@ a {
     padding: 4rem 0;
   }
 
-  .media-section, .spotify-section {
+  .media-section, .spotify-section, .upcoming-section {
     padding: 2rem 0;
   }
 

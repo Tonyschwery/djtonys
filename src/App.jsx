@@ -10,6 +10,7 @@ const textContent = {
     aboutText: "Born in Beirut, I am a Lebanese DJ, VJ, and record producer with over 20 years of experience crafting unforgettable sonic and visual journeys. I have released tracks on prestigious labels like Inkognito Records, Sensual Ibiza, and Blackhole Records. Known for my deep expertise across all genres—especially the 70s, 80s, and 90s—I have played at premier clubs and festivals across the Middle East and Europe, always driven by a passion to move crowds and push the boundaries of electronic music.",
     musicTitle: 'Latest Mixes',
     videoTitle: 'Visuals & Live Sets',
+    upcomingTitle: 'Upcoming Release',
     spotifyTitle: 'Original Releases',
     contactTitle: 'Get In Touch',
     contactText: "Available for bookings, studio sessions, and collaborations worldwide.",
@@ -20,6 +21,7 @@ const textContent = {
     aboutText: "ولدت في بيروت، وأنا دي جي وفي جي ومنتج موسيقي لبناني أمتلك أكثر من 20 عاماً من الخبرة في صياغة رحلات صوتية وبصرية لا تُنسى. أصدرت العديد من المقاطع الموسيقية مع شركات إنتاج مرموقة مثل Inkognito Records و Sensual Ibiza و Blackhole Records. أُعرف بخبرتي العميقة في جميع أنواع الموسيقى، خاصة موسيقى السبعينيات والثمانينيات والتسعينيات، وقد قدمت عروضاً في أرقى النوادي والمهرجانات في جميع أنحاء الشرق الأوسط وأوروبا، مدفوعاً دائماً بشغف تحريك الجماهير ودفع حدود الموسيقى الإلكترونية.",
     musicTitle: 'أحدث المقاطع الصوتية',
     videoTitle: 'مرئيات وعروض حية',
+    upcomingTitle: 'الإصدار القادم',
     spotifyTitle: 'الإصدارات الأصلية',
     contactTitle: 'تواصل معي',
     contactText: "متاح للحجوزات وجلسات الاستوديو والتعاون في جميع أنحاء العالم.",
@@ -163,6 +165,35 @@ function App() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="strict-origin-when-cross-origin" 
                 allowFullScreen
+              ></iframe>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Upcoming Release Section */}
+      <section className="upcoming-section">
+        <div className="container">
+          <motion.div 
+            className="spotify-container glass upcoming-card"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="card-header" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
+              <FaSoundcloud className="card-icon" size={28} />
+              <h2>{t.upcomingTitle}</h2>
+            </div>
+            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+              <iframe 
+                width="100%" 
+                height="450" 
+                scrolling="no" 
+                frameBorder="no" 
+                allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tonyschwerymusic/yalla-lets-dance&color=%23fff200&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                style={{ borderRadius: '12px' }}
               ></iframe>
             </div>
           </motion.div>
