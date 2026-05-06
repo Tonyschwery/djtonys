@@ -377,16 +377,83 @@ a {
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+  .about-section, .contact-section {
+    padding: 6rem 0;
+  }
+}
+
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .about-section, .contact-section {
+    padding: 4rem 0;
+  }
+
+  .media-section, .spotify-section {
+    padding: 2rem 0;
+  }
+
   .about-grid, .media-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
   .about-image {
     order: -1;
   }
   
-  .hero-logo {
-    width: 80%;
+  .about-text h2, .contact-box h2 {
+    font-size: 2rem;
+  }
+
+  .spotify-container {
+    padding: 1.5rem;
+  }
+
+  .audio-list.glass {
+    padding: 1rem !important;
+  }
+
+  .contact-box {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .lang-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .brand-logo {
+    height: 30px;
+  }
+
+  .social-icons {
+    gap: 1rem;
   }
 }
