@@ -64,8 +64,8 @@ function App() {
           <img src="/images/TONY SCHWERY EFFECT 1-MAIN-DESKTOP.jpg" alt="DJ Tony Schwery Performing Live at a Private Yacht Party in Doha, Qatar" className="bg-image" />
           <div className="overlay"></div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="hero-content"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ function App() {
       {/* About Section */}
       <section className="about-section">
         <div className="container about-grid">
-          <motion.div 
+          <motion.div
             className="about-image"
             initial={{ opacity: 0, x: lang === 'en' ? -50 : 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -93,7 +93,7 @@ function App() {
           >
             <img src="/images/Screenshot_20250331_140132_CapCut.jpg" alt="Lebanese DJ Tony Schwery in the studio producing music in Qatar" />
           </motion.div>
-          <motion.div 
+          <motion.div
             className="about-text"
             initial={{ opacity: 0, x: lang === 'en' ? 50 : -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +109,7 @@ function App() {
       {/* Music & Video Section */}
       <section className="media-section">
         <div className="container media-grid">
-          <motion.div 
+          <motion.div
             className="media-card"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,28 +122,28 @@ function App() {
             </div>
             {/* SoundCloud Embeds */}
             <div className="audio-list glass" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <iframe 
-                width="100%" 
-                height="166" 
-                scrolling="no" 
-                frameBorder="no" 
-                allow="autoplay" 
+              <iframe
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameBorder="no"
+                allow="autoplay"
                 src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tonyschwerymusic/afro-house-session-tape-2%3Fin%3Dtonyschwerymusic/sets/afro-house-sessions&color=%23fff200&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
                 style={{ borderRadius: '8px' }}
               ></iframe>
-              <iframe 
-                width="100%" 
-                height="166" 
-                scrolling="no" 
-                frameBorder="no" 
-                allow="autoplay" 
+              <iframe
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameBorder="no"
+                allow="autoplay"
                 src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tonyschwerymusic/organico-1-live-by-tony-schwery-november-2024-palm_jumairah%3Fin%3Dtonyschwerymusic/sets/afro-house-sessions&color=%23fff200&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
                 style={{ borderRadius: '8px' }}
               ></iframe>
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="media-card"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -156,14 +156,14 @@ function App() {
             </div>
             {/* YouTube Embed */}
             <div className="embed-container glass" style={{ display: 'block' }}>
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/DmSDES7hAMg" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/DmSDES7hAMg"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
             </div>
@@ -174,7 +174,7 @@ function App() {
       {/* Upcoming Release Section */}
       <section className="upcoming-section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="spotify-container glass upcoming-card"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -186,13 +186,13 @@ function App() {
               <h2>{t.upcomingTitle}</h2>
             </div>
             <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-              <iframe 
-                width="100%" 
-                height="450" 
-                scrolling="no" 
-                frameBorder="no" 
-                allow="autoplay" 
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tonyschwerymusic/yalla-lets-dance&color=%23fff200&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+              <iframe
+                width="100%"
+                height="450"
+                scrolling="no"
+                frameBorder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/tonyschwerymusic/sinnerman-nina-simone-tony&color=%23fff200&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
                 style={{ borderRadius: '12px' }}
               ></iframe>
             </div>
@@ -203,7 +203,7 @@ function App() {
       {/* Spotify Section */}
       <section className="spotify-section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="spotify-container glass"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -214,14 +214,14 @@ function App() {
               <FaSpotify className="card-icon" size={28} style={{ color: '#1DB954' }} />
               <h2>{t.spotifyTitle}</h2>
             </div>
-            <iframe 
-              style={{ borderRadius: '12px' }} 
-              src="https://open.spotify.com/embed/artist/4dR9Kt0Evg1vOxH7jERYMa?utm_source=generator&theme=0" 
-              width="100%" 
-              height="352" 
-              frameBorder="0" 
-              allowFullScreen="" 
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            <iframe
+              style={{ borderRadius: '12px' }}
+              src="https://open.spotify.com/embed/artist/4dR9Kt0Evg1vOxH7jERYMa?utm_source=generator&theme=0"
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allowFullScreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
             ></iframe>
           </motion.div>
@@ -231,7 +231,7 @@ function App() {
       {/* Contact Section */}
       <section className="contact-section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="contact-box glass"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -247,7 +247,7 @@ function App() {
 
               <AnimatePresence>
                 {showEmailMenu && (
-                  <motion.div 
+                  <motion.div
                     className="email-menu glass"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
