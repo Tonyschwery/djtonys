@@ -42,7 +42,10 @@ const IMAGES_DIR = path.join(process.cwd(), 'public', 'blog-images');
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
 const DRAFT_MODE = String(process.env.DRAFT_MODE).toLowerCase() === 'true';
 
-const MAX_SEARCHES = 6;
+// How many Brave searches one article is allowed, and how many
+// back-and-forth rounds with Claude before we give up. One of the searches
+// is typically spent looking for a relevant YouTube video.
+const MAX_SEARCHES = 7;
 const MAX_ROUNDS = 10;
 
 // ---------------------------------------------------------------------------
@@ -332,6 +335,12 @@ RESEARCH:
 - Never invent Tony's gigs, awards, or releases beyond the facts listed above.
 - Paraphrase everything. Do not quote sources at length.
 
+OPTIONAL VIDEO:
+- If the topic would genuinely benefit from a video — a classic set, a mix, a technique demonstration, a documentary clip, an artist interview — you may run one extra brave_search including the word "youtube" to find a relevant one.
+- If you find a good one, add a "video" line to the frontmatter with the full YouTube URL, exactly as it appeared in the search results.
+- CRITICAL: only ever use a YouTube URL that appeared verbatim in a brave_search result. Never construct, guess, or recall a YouTube URL or video ID from memory — a wrong ID produces a broken embed on the live site.
+- If no clearly relevant video turned up in the search results, omit the video line entirely. Most posts will not have one, and that is fine.
+
 OUTPUT FORMAT — this is critical:
 When you have finished researching, return ONLY a Markdown document. No preamble, no code fences around the whole thing.
 It must begin with YAML frontmatter in exactly this shape:
@@ -341,6 +350,7 @@ title: "A specific, compelling, search-friendly title"
 date: "${'${DATE}'}"
 excerpt: "One or two sentences used as the meta description and card summary."
 keywords: "comma, separated, high intent, search terms"
+video: "https://www.youtube.com/watch?v=... (OPTIONAL — omit this whole line if you did not find a relevant video in the search results)"
 ---
 
 Then the article body in pure Markdown.
@@ -722,7 +732,49 @@ function parseFrontmatter(markdown) {
     date: read('date'),
     excerpt: read('excerpt'),
     keywords: read('keywords'),
+    video: read('video'),
   };
+}
+
+/**
+ * Confirms a YouTube video really exists before we embed it.
+ *
+ * The model is told only to use URLs it saw in search results, but a wrong or
+ * invented ID would render as a dead player on the live site. YouTube's oEmbed
+ * endpoint answers 200 for real videos and 404 for anything else, so this is a
+ * cheap, dependency-free check. Anything uncertain is dropped rather than risked.
+ */
+async function verifyYouTubeVideo(url) {
+  if (!url) return '';
+
+  const idMatch = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/
+  );
+
+  if (!idMatch) {
+    warn(`Video link is not a recognisable YouTube URL, dropping it: ${url.slice(0, 120)}`);
+    return '';
+  }
+
+  const canonical = `https://www.youtube.com/watch?v=${idMatch[1]}`;
+
+  try {
+    const response = await fetch(
+      `https://www.youtube.com/oembed?url=${encodeURIComponent(canonical)}&format=json`
+    );
+
+    if (!response.ok) {
+      warn(`Video ${idMatch[1]} does not exist or is private (HTTP ${response.status}). Dropping it.`);
+      return '';
+    }
+
+    const data = await response.json();
+    log(`Video verified: "${data.title}" by ${data.author_name}`);
+    return canonical;
+  } catch (error) {
+    warn(`Could not verify video (${error.message}). Dropping it to be safe.`);
+    return '';
+  }
 }
 
 function rebuildDocument(markdown, meta, extras) {
@@ -741,7 +793,7 @@ function rebuildDocument(markdown, meta, extras) {
     lines.push(`imageAlt: "${yamlSafe(extras.imageAlt)}"`);
   }
   if (extras.genre) lines.push(`genre: "${yamlSafe(extras.genre)}"`);
-  lines.push('video: ""');
+  lines.push(`video: "${yamlSafe(extras.video || '')}"`);
   if (DRAFT_MODE) lines.push('draft: true');
 
   lines.push('---', '', body, '');
@@ -818,11 +870,15 @@ async function main() {
     fs.writeFileSync('image-error.log', error.message);
   }
 
+  // --- 4b. Verify any video the model picked ------------------------------
+  const verifiedVideo = await verifyYouTubeVideo(meta.video);
+
   // --- 5. Write ------------------------------------------------------------
   const document = rebuildDocument(markdown, meta, {
     image: imagePath,
     imageAlt,
     genre: preset.label,
+    video: verifiedVideo,
   });
 
   fs.writeFileSync(path.join(POSTS_DIR, fileName), document, 'utf8');
@@ -830,6 +886,7 @@ async function main() {
   log(`Wrote ${fileName} (~${wordCount} words, genre: ${preset.label})`);
   log(`Title: ${meta.title}`);
   if (imagePath) log(`Image: ${imagePath}`);
+  if (verifiedVideo) log(`Video: ${verifiedVideo}`);
   if (DRAFT_MODE) log('DRAFT_MODE is on — this post stays off the live site.');
 
   setActionOutput('slug', baseSlug);
