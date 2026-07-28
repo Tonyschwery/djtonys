@@ -59,6 +59,22 @@ a {
 }
 
 /* Navbar */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-blog-link {
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.15s ease;
+}
+
+.nav-blog-link:hover {
+  color: var(--accent-color);
+}
+
 .navbar {
   position: fixed;
   top: 0;

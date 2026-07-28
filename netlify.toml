@@ -1,0 +1,12 @@
+# Netlify build settings for djtony.qa
+#
+# `npm run build` runs the blog page generator first (scripts/build-blog.js),
+# then the normal Vite build. So every time the daily robot pushes a new post
+# to GitHub, Netlify rebuilds and the new blog page goes live automatically.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

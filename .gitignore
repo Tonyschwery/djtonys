@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Generated blog pages — rebuilt automatically by `npm run build:blog`.
+# Keeping them out of git avoids pointless merge conflicts; Netlify
+# regenerates them on every deploy.
+public/blog/
+public/sitemap.xml
+image-error.log
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

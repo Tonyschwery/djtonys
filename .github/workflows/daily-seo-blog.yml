@@ -1,0 +1,96 @@
+name: Daily SEO Blog Post
+
+# Runs every day at 03:00 UTC (06:00 Doha time).
+# Also runnable by hand from the Actions tab, which is how you should test it.
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Generate the post but do not commit it'
+        required: false
+        default: 'false'
+
+# Required so the job can push the generated post back to main.
+permissions:
+  contents: write
+
+# Never let two runs overlap and fight over the same branch.
+concurrency:
+  group: daily-seo-blog
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate today's blog post
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Research provider. Without this the post is written unresearched.
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
+          # Image provider. Pollinations is the free backup if these are unset.
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          # Optional overrides — set these as repo variables if you want.
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          CF_IMAGE_MODEL: ${{ vars.CF_IMAGE_MODEL }}
+          DISABLE_POLLINATIONS: ${{ vars.DISABLE_POLLINATIONS }}
+          DRAFT_MODE: ${{ vars.DRAFT_MODE }}
+        run: node scripts/generate-blog.cjs
+
+      - name: Commit and push the new post
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # The images folder may not exist if no picture was generated.
+          mkdir -p public/blog-images
+
+          git add content/posts public/blog-images
+
+          # If the script produced nothing new, exit cleanly instead of failing.
+          if git diff --staged --quiet; then
+            echo "No new post was generated. Nothing to commit."
+            exit 0
+          fi
+
+          git commit -m "content: add ${{ steps.generate.outputs.slug }}"
+
+          # Rebase onto anything pushed while we were running, then push.
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Daily SEO Blog Post" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Title:** ${{ steps.generate.outputs.title }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Slug:** \`${{ steps.generate.outputs.slug }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Genre:** ${{ steps.generate.outputs.genre }}" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.generate.outputs.image }}" ]; then
+            echo "- **Picture:** OK — \`${{ steps.generate.outputs.image }}\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **Picture:** FAILED — see the reason below" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat image-error.log >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "(no reason recorded)" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi

@@ -51,10 +51,13 @@ function App() {
           {/* Logo will be placed here */}
           <img src="/images/logo.jpg" alt="Tony Schwery - Premier Lebanese DJ in Doha Qatar" className="brand-logo" />
         </div>
-        <button className="lang-toggle" onClick={toggleLang}>
-          <FaGlobe size={18} />
-          {lang === 'en' ? 'عربي' : 'EN'}
-        </button>
+        <div className="nav-links">
+          <a href="/blog/" className="nav-blog-link">Blog</a>
+          <button className="lang-toggle" onClick={toggleLang}>
+            <FaGlobe size={18} />
+            {lang === 'en' ? 'عربي' : 'EN'}
+          </button>
+        </div>
       </nav>
 
       {/* Hero Section */}
