@@ -26,8 +26,9 @@ const ROOT = path.join(__dirname, "..");
 const POSTS_DIR = path.join(ROOT, "content", "posts");
 const OUTPUT_DIR = path.join(ROOT, "public", "blog");
 
-// Change this if the site's real, live web address is ever different.
-const SITE_URL = "https://djtony.qa";
+// The live web address of the site. Used for canonical links, social preview
+// URLs, and the sitemap.
+const SITE_URL = "https://djtonys.net";
 const SITE_NAME = "Tony Schwery";
 const DEFAULT_IMAGE = "/images/TONY SCHWERY EFFECT 1-MAIN-DESKTOP.jpg";
 

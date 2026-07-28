@@ -14,7 +14,7 @@
  *
  * Environment:
  *   BUFFER_ACCESS_TOKEN   (required) — GitHub repository secret
- *   SITE_URL              (optional) — defaults to https://djtony.qa
+ *   SITE_URL              (optional) — defaults to https://djtonys.net
  *   FB_CHANNEL_ID         (optional) — overrides the value below
  *   THREADS_CHANNEL_ID    (optional) — overrides the value below
  *
@@ -23,7 +23,7 @@
  */
 
 const BUFFER_API_URL = 'https://api.buffer.com';
-const SITE_URL = (process.env.SITE_URL || 'https://djtony.qa').replace(/\/$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://djtonys.net').replace(/\/$/, '');
 
 // ---------------------------------------------------------------------------
 // Channel IDs, fetched from the Buffer API on 28 July 2026.
