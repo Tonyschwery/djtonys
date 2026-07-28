@@ -77,6 +77,26 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
+      - name: Wait for Netlify to rebuild
+        if: github.event.inputs.dry_run != 'true' && steps.generate.outputs.slug != ''
+        # Buffer fetches the image from a public URL, and the article link
+        # needs to be live too. Netlify usually finishes a rebuild in about
+        # a minute; three minutes is a safe margin.
+        run: sleep 180
+
+      - name: Post to Facebook and Threads
+        if: github.event.inputs.dry_run != 'true' && steps.generate.outputs.slug != ''
+        env:
+          BUFFER_ACCESS_TOKEN: ${{ secrets.BUFFER_ACCESS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          FB_CHANNEL_ID: ${{ vars.FB_CHANNEL_ID }}
+          THREADS_CHANNEL_ID: ${{ vars.THREADS_CHANNEL_ID }}
+          POST_SLUG: ${{ steps.generate.outputs.slug }}
+          POST_TITLE: ${{ steps.generate.outputs.title }}
+          POST_EXCERPT: ${{ steps.generate.outputs.excerpt }}
+          POST_IMAGE: ${{ steps.generate.outputs.image }}
+        run: node scripts/post-to-social.cjs
+
       - name: Summary
         if: always()
         run: |
