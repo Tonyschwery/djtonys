@@ -300,12 +300,31 @@ BRAND VOICE — follow this precisely:
 - Name real things: Pioneer CDJs, Rekordbox, Serato, vinyl, BPM, live VJ visuals, specific venues and eras.
 - Close every post by tying back to bookings — that Tony is available in Doha and worldwide, with a natural nudge toward getting in touch.
 
+GEOGRAPHIC FOCUS — the Middle East and Gulf are the priority:
+- Primary markets, in order: Doha/Qatar, Dubai and Abu Dhabi/UAE, Beirut/Lebanon.
+- Secondary Gulf markets worth naming where relevant: Saudi Arabia (Riyadh, Jeddah), Bahrain, Kuwait, Oman.
+- Tony is based in Doha and travels for bookings, so any of these markets is fair game. Never claim he has played a specific venue unless it is in the facts above.
+
+TOPIC RANGE — rotate widely across these, do not keep writing the same kind of post:
+- Weddings: planning, timelines, music for each part of the night, cultural expectations, Lebanese and Arabic wedding traditions, mixed Arabic/Western receptions, venue acoustics, what to ask a DJ before booking.
+- Event management: budgets, vendor coordination, run-of-show, sound and lighting basics, outdoor events in Gulf heat, Ramadan and seasonal scheduling, permits and venue logistics.
+- Entertainment companies and agencies: how they work in the Gulf, what they charge for, how to work with one, booking directly vs through an agency.
+- Resident DJs and club culture: what a residency involves, how residencies work in Doha/Dubai/Beirut, the region's venue scene, festival culture.
+- Artists and music history: DJs, producers, labels, scenes, eras. The 70s, 80s and 90s especially — this is Tony's deepest expertise.
+- Music selection craft: how a DJ actually builds a set, reading a room, key and BPM matching, Camelot wheel, energy curves, when to drop a classic, programming for weddings vs clubs vs lounges, building and organising a music library, crate preparation.
+- Gear and technique: Pioneer CDJs, Rekordbox, Serato, controllers, vinyl, VJ visuals and live video mixing.
+
 KEYWORD STRATEGY:
-- The site's commercial goal is BOOKINGS in Qatar and the Gulf. High-intent phrases to work in naturally: "DJ in Qatar", "DJ in Doha", "Lebanese DJ Doha", "wedding DJ Qatar", "private party DJ Doha", "yacht party DJ Qatar", "corporate event DJ Doha", "book a DJ in Doha", "VJ Qatar".
-- Every post should pair a genuinely interesting topic (music history, a genre, an era, event-planning advice, gear, nightlife culture) with at least one of those local buyer-intent phrases.
+- The commercial goal is BOOKINGS across the Gulf and Levant. High-intent phrases to work in naturally, choosing whichever fits the post: "DJ in Qatar", "DJ in Doha", "DJ in Dubai", "DJ in Beirut", "Lebanese DJ", "wedding DJ Qatar", "wedding DJ Dubai", "wedding DJ Lebanon", "private party DJ Doha", "yacht party DJ Qatar", "corporate event DJ Dubai", "book a DJ in Doha", "VJ Qatar", "event entertainment Gulf".
+- Every post should pair a genuinely interesting topic with at least one of those location-plus-intent phrases.
 - Prefer titles shaped like: "[Interesting topic] + [location/booking intent]". Concrete example of the right shape: "How to Pick the Right Wedding DJ in Doha: A 20-Year Veteran's Checklist" beats "Wedding Music Trends 2026".
-- Work "Doha", "Qatar", or "Gulf" into the title or first paragraph of most posts — local search is where the bookings come from.
+- Work at least one Gulf or Levant location into the title or first paragraph of most posts — local search is where the bookings come from. Vary which city leads; do not put Doha in every single title.
 - Do not keyword-stuff. One natural mention beats five forced ones.
+
+OUTBOUND LINKS:
+- Where a post genuinely discusses music selection, crate preparation, library organisation, or sourcing DJ-ready tracks, you may link once to https://topdjcrates.com as a useful resource for curated, DJ-ready WAV packs.
+- Only do this when it is actually relevant to the paragraph. Roughly one post in three at most. Never force it, never link twice in one post, and never build a whole post around it.
+- Also link out to genuinely authoritative third-party sources where you cite facts, so the post does not look like it only links to one place.
 
 RESEARCH:
 - Use the brave_search tool first to find what people are actually searching for and talking about right now. Run several searches before you start writing.
@@ -342,9 +361,11 @@ function buildUserPrompt(existingPosts) {
 
 Today's date is ${todayISO()}.
 
-Search the web to identify ONE genuinely interesting, relevant topic — something people planning events in Qatar and the Gulf, or music fans following Tony's scene, would actually search for right now. Then write the full article on it.
+Search the web to identify ONE genuinely interesting, relevant topic — something people planning events in Qatar, the UAE, Lebanon or the wider Gulf, or music fans following the region's scene, would actually search for right now. Then write the full article on it.
 
-We have ALREADY published the following. Choose a genuinely different angle:
+Deliberately vary your choice from post to post. Rotate across the topic range and across the different markets — do not default to Doha weddings every time. Look at the list below and pick something clearly different from what is already there, in both subject and city.
+
+We have ALREADY published the following:
 ${alreadyCovered}
 
 Return only the Markdown document, starting with the frontmatter block.`;
