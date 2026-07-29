@@ -95,7 +95,7 @@ const CREATE_POST_MUTATION = `
  * Creates one post on one channel. Never throws — a failure on one platform
  * shouldn't stop the other from posting. Returns true/false for the summary.
  */
-async function postToChannel(token, { channelId, label, text, imageUrl }) {
+async function postToChannel(token, { channelId, label, text, imageUrl, metadata }) {
   if (!channelId || channelId.startsWith('PASTE_')) {
     warn(`${label}: no channel ID configured — skipped.`);
     return false;
@@ -110,6 +110,14 @@ async function postToChannel(token, { channelId, label, text, imageUrl }) {
     mode: 'shareNow',
     assets: imageUrl ? [{ image: { url: imageUrl } }] : [],
   };
+
+  // Channel-specific settings. Facebook REQUIRES this: its `type` field is
+  // non-nullable, and without it Buffer rejects the post with
+  // "Facebook posts require a type (post, story, or reel)."
+  // Threads has no equivalent requirement, which is why it always worked.
+  if (metadata) {
+    input.metadata = metadata;
+  }
 
   try {
     const data = await bufferRequest(token, CREATE_POST_MUTATION, { input });
@@ -165,6 +173,7 @@ async function main() {
       label: 'Facebook',
       text: `${title}\n\n${excerpt}\n\nRead the full article: ${postUrl}`,
       imageUrl,
+      metadata: { facebook: { type: 'post' } },
     })
   );
 
