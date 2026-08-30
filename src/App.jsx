@@ -7,7 +7,7 @@ const textContent = {
   en: {
     heroTagline: 'DJ | VJ | Producer | Sound Engineer',
     aboutTitle: 'About Me',
-    aboutText: "Born in Beirut, I am a Lebanese DJ, VJ, and record producer with over 20 years of experience crafting unforgettable sonic and visual journeys. I have released tracks on prestigious labels like Inkognito Records, Sensual Ibiza, and Blackhole Records. Known for my deep expertise across all genres—especially the 70s, 80s, and 90s—I have played at premier clubs and festivals across the Middle East and Europe, always driven by a passion to move crowds and push the boundaries of electronic music.",
+    aboutText: "Based in Beirut, Lebanon, I am a Lebanese DJ, VJ, and record producer with over 25 years of experience crafting unforgettable sonic and visual journeys. Over the years, I have lived and performed in Dubai for 7 years, along with playing in Abu Dhabi, Jordan, Doha, Prague, and multiple times in Ibiza. I have released tracks on prestigious labels like Inkognito Records, Sensual Ibiza, and Blackhole Records. Known for my deep expertise across all genres—especially the 70s, 80s, and 90s—I have played at premier clubs and festivals across the Middle East and Europe, always driven by a passion to move crowds and push the boundaries of electronic music.",
     musicTitle: 'Latest Mixes',
     videoTitle: 'Visuals & Live Sets',
     upcomingTitle: 'Upcoming Release',
@@ -18,7 +18,7 @@ const textContent = {
   ar: {
     heroTagline: 'دي جي | في جي | منتج | مهندس صوت',
     aboutTitle: 'نبذة عني',
-    aboutText: "ولدت في بيروت، وأنا دي جي وفي جي ومنتج موسيقي لبناني أمتلك أكثر من 20 عاماً من الخبرة في صياغة رحلات صوتية وبصرية لا تُنسى. أصدرت العديد من المقاطع الموسيقية مع شركات إنتاج مرموقة مثل Inkognito Records و Sensual Ibiza و Blackhole Records. أُعرف بخبرتي العميقة في جميع أنواع الموسيقى، خاصة موسيقى السبعينيات والثمانينيات والتسعينيات، وقد قدمت عروضاً في أرقى النوادي والمهرجانات في جميع أنحاء الشرق الأوسط وأوروبا، مدفوعاً دائماً بشغف تحريك الجماهير ودفع حدود الموسيقى الإلكترونية.",
+    aboutText: "أستقر في بيروت، لبنان، وأنا دي جي وفي جي ومنتج موسيقي أمتلك أكثر من 25 عاماً من الخبرة في صياغة رحلات صوتية وبصرية لا تُنسى. على مدار هذه السنوات، عشت وعزفت في دبي لمدة 7 سنوات، بالإضافة إلى عروض في أبو ظبي، الأردن، الدوحة، براغ، وعدة مرات في إيبيزا. أصدرت العديد من المقاطع الموسيقية مع شركات إنتاج مرموقة مثل Inkognito Records و Sensual Ibiza و Blackhole Records. أُعرف بخبرتي العميقة في جميع أنواع الموسيقى، خاصة موسيقى السبعينيات والثمانينيات والتسعينيات، وقد قدمت عروضاً في أرقى النوادي والمهرجانات في جميع أنحاء الشرق الأوسط وأوروبا، مدفوعاً دائماً بشغف تحريك الجماهير ودفع حدود الموسيقى الإلكترونية.",
     musicTitle: 'أحدث المقاطع الصوتية',
     videoTitle: 'مرئيات وعروض حية',
     upcomingTitle: 'الإصدار القادم',
@@ -49,7 +49,7 @@ function App() {
       <nav className="navbar">
         <div className="nav-logo">
           {/* Logo will be placed here */}
-          <img src="/images/logo.jpg" alt="Tony Schwery - Premier Lebanese DJ in Doha Qatar" className="brand-logo" />
+          <img src="/images/logo.jpg" alt="Tony Schwery - Premier Lebanese DJ in Beirut Lebanon" className="brand-logo" />
         </div>
         <div className="nav-links">
           <a href="/blog/" className="nav-blog-link">Blog</a>
@@ -64,7 +64,7 @@ function App() {
       <section className="hero-section">
         <div className="hero-background">
           {/* Main DJ Photo */}
-          <img src="/images/TONY SCHWERY EFFECT 1-MAIN-DESKTOP.jpg" alt="DJ Tony Schwery Performing Live at a Private Yacht Party in Doha, Qatar" className="bg-image" />
+          <img src="/images/TONY SCHWERY EFFECT 1-MAIN-DESKTOP.jpg" alt="DJ Tony Schwery Performing Live at a Private Event in Lebanon" className="bg-image" />
           <div className="overlay"></div>
         </div>
 
@@ -94,7 +94,7 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <img src="/images/Screenshot_20250331_140132_CapCut.jpg" alt="Lebanese DJ Tony Schwery in the studio producing music in Qatar" />
+            <img src="/images/Screenshot_20250331_140132_CapCut.jpg" alt="Lebanese DJ Tony Schwery in the studio producing music in Beirut, Lebanon" />
           </motion.div>
           <motion.div
             className="about-text"
